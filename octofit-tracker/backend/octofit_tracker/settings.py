@@ -26,9 +26,13 @@ SECRET_KEY = 'django-insecure-rgbu)c$slfybmf-+spv$n5mc$npdz)0kl8p07jyw4eg)3an$a^
 DEBUG = True
 
 import os
-ALLOWED_HOSTS = ['*']
-if os.environ.get('CODESPACE_NAME'):
-    ALLOWED_HOSTS.append(f"{os.environ.get('CODESPACE_NAME')}-8000.app.github.dev")
+
+# Dynamically set allowed hosts for localhost and Codespace
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+codespace_name = os.environ.get('CODESPACE_NAME')
+if codespace_name:
+    ALLOWED_HOSTS.append(f"{codespace_name}-8000.app.github.dev")
+    ALLOWED_HOSTS.append(codespace_name)
 
 
 # Application definition
@@ -72,20 +76,18 @@ DATABASES = {
         }
     }
 
-    # CORS settings
-    CORS_ALLOW_ALL_ORIGINS = True
-    CORS_ALLOW_CREDENTIALS = True
-    CORS_ALLOW_HEADERS = [
-        'content-type',
-        'authorization',
-        'x-csrftoken',
-        'accept',
-        'origin',
-        'user-agent',
-    ]
-        },
-    }
-}
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-csrftoken',
+    'accept',
+    'origin',
+    'user-agent',
+]
+
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
