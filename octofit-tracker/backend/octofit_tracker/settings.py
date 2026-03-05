@@ -64,12 +64,25 @@ DATABASES = {
         'NAME': 'octofit_db',
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'localhost',
-            'port': 27017,
-            'username': '',
-            'password': '',
-            'authSource': '',
-            'authMechanism': '',
+                'host': 'mongodb://localhost:27017',
+                'username': '',
+                'password': '',
+                'authSource': 'admin',
+            }
+        }
+    }
+
+    # CORS settings
+    CORS_ALLOW_ALL_ORIGINS = True
+    CORS_ALLOW_CREDENTIALS = True
+    CORS_ALLOW_HEADERS = [
+        'content-type',
+        'authorization',
+        'x-csrftoken',
+        'accept',
+        'origin',
+        'user-agent',
+    ]
         },
     }
 }
